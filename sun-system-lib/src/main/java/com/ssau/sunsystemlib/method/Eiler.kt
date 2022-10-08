@@ -1,6 +1,6 @@
 package com.ssau.sunsystemlib.method
 
-import com.ssau.sunsystemlib.core.Scheme
+import com.ssau.sunsystemlib.core.interfaces.Scheme
 import com.ssau.sunsystemlib.entity.Accelerate
 import com.ssau.sunsystemlib.entity.Coordinate
 import com.ssau.sunsystemlib.entity.Velocity

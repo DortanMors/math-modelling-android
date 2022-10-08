@@ -1,4 +1,4 @@
-package com.ssau.sunsystemlib.core
+package com.ssau.sunsystemlib.core.interfaces
 
 import com.ssau.sunsystemlib.entity.Accelerate
 import com.ssau.sunsystemlib.entity.Coordinate
