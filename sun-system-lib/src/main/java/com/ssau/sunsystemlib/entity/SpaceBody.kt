@@ -4,5 +4,4 @@ data class SpaceBody(
     val mass: Double,
     var coordinate: Coordinate,
     var velocity: Velocity,
-    var accelerate: Accelerate,
 )

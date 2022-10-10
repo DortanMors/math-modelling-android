@@ -7,7 +7,7 @@ import com.ssau.sunsystemlib.entity.Velocity
 import com.ssau.sunsystemlib.util.times
 import org.jetbrains.kotlinx.multik.ndarray.operations.plus
 
-class Eiler: Scheme {
+class Eiler{
 
     // velocity(N)
     // accelerate(n)
