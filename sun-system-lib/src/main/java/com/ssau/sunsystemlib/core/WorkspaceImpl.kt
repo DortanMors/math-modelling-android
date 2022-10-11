@@ -1,43 +1,47 @@
 package com.ssau.sunsystemlib.core
 
-import com.ssau.sunsystemlib.core.interfaces.PlanetSystem
+import com.ssau.sunsystemlib.core.interfaces.Scheme
 import com.ssau.sunsystemlib.core.interfaces.Workspace
 import com.ssau.sunsystemlib.entity.SpaceBody
-import com.ssau.sunsystemlib.util.Vector3d
-import com.ssau.sunsystemlib.util.getGravity
+import com.ssau.sunsystemlib.entity.SystemState
+import com.ssau.sunsystemlib.method.EulerCramer
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class WorkspaceImpl(
     planets: List<SpaceBody>,
+    override var scheme: Scheme,
     override val timeStep: Long,
 ) : Workspace {
-    override val planetSystem: PlanetSystem = PlanetSystemImpl(planets)
 
-    private val _bodiesState: MutableStateFlow<PlanetSystem> =
-        MutableStateFlow(planetSystem)
+    /**
+     * Внутренний поток состояний системы, разница между двумя последовытельными состояниями = timeStep
+     */
+    private val _bodiesState: MutableStateFlow<SystemState> =
+        MutableStateFlow(
+            SystemState(PlanetSystemImpl(planets))
+                .recalculateState( // для первой итерации предыдущее состояние не учитывается
+                    scheme = EulerCramer,
+                    deltaTime = timeStep,
+                )
+        )
 
-    override val bodiesState: Flow<PlanetSystem> = _bodiesState
+    override val bodiesState: Flow<SystemState> = _bodiesState
+
+    private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
     override fun start() {
-        TODO("Not yet implemented")
+        coroutineScope.launch {
+            bodiesState.collect { currentState ->
+                delay(100)
+                val newState = currentState.recalculateState(scheme, timeStep)
+                _bodiesState.emit(newState)
+            }
+        }
     }
 
     override fun pause() {
         TODO("Not yet implemented")
     }
-
-    private fun superposition(current: SpaceBody, allBodies: List<SpaceBody>): Vector3d {
-        val newForce = Vector3d(0.0, 0.0, 0.0)
-        for (planet in allBodies) {
-            if (planet != current) {
-                newForce += getGravity(
-                    mass1 = planet.mass,
-                    mass2 = current.mass,
-                    radius = planet.coordinate - current.coordinate
-                )
-            }
-        }
-        return newForce
-    }
-}
+ }
