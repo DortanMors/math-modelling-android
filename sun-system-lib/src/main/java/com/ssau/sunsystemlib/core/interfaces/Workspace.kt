@@ -1,12 +1,11 @@
 package com.ssau.sunsystemlib.core.interfaces
 
-import com.ssau.sunsystemlib.entity.Force
-import com.ssau.sunsystemlib.entity.SpaceBody
+import kotlinx.coroutines.flow.Flow
 
 interface Workspace {
     val timeStep: Long
     val planetSystem: PlanetSystem
-    val bodiesState: Flow<Map<PlanetSystem, Force>>
+    val bodiesState: Flow<PlanetSystem>
     fun start()
     fun pause()
 }
