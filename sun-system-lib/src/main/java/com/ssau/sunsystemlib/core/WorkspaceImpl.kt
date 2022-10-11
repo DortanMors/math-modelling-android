@@ -1,5 +1,6 @@
 package com.ssau.sunsystemlib.core
 
+import com.ssau.sunsystemlib.core.Constants.DEFAULT_DELAY
 import com.ssau.sunsystemlib.core.interfaces.Scheme
 import com.ssau.sunsystemlib.core.interfaces.Workspace
 import com.ssau.sunsystemlib.entity.SpaceBody
@@ -34,7 +35,7 @@ class WorkspaceImpl(
     override fun start() {
         coroutineScope.launch {
             bodiesState.collect { currentState ->
-                delay(100)
+                delay(DEFAULT_DELAY)
                 val newState = currentState.recalculateState(scheme, timeStep)
                 _bodiesState.emit(newState)
             }
