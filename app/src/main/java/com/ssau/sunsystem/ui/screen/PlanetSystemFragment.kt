@@ -6,7 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.ssau.sunsystem.R
+import com.ssau.sunsystem.ui.view.PlanetSystemView
+import com.ssau.sunsystem.ui.viewmodel.MainViewModel
+import kotlinx.coroutines.launch
 
 class PlanetSystemFragment : Fragment() {
 
@@ -23,4 +27,13 @@ class PlanetSystemFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_planet_system, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val planetSystemView = view.findViewById<PlanetSystemView>(R.id.planet_system_view)
+        lifecycleScope.launch {
+            viewModel.uiState.collect { planets ->
+                planetSystemView.setSystemState(planets)
+            }
+        }
+    }
 }

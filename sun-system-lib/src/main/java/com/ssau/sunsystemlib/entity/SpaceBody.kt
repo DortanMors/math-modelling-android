@@ -4,9 +4,10 @@ import com.ssau.sunsystemlib.util.Vector3d
 
 data class SpaceBody(
     val mass: Double,
-    var coordinate: Vector3d,
-    var velocity: Vector3d,
-    var externalForce: Vector3d,
+    val coordinate: Vector3d,
+    val velocity: Vector3d,
+    val externalForce: Vector3d,
+    val colorId: Int,
 ) {
     val accelerate: Vector3d
         get() = externalForce / mass

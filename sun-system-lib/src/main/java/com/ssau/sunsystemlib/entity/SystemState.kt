@@ -23,7 +23,8 @@ data class SystemState(
                 mass = currentPlanet.mass,
                 coordinate = currentPlanet.coordinate,
                 velocity = currentPlanet.velocity,
-                externalForce = superposition(currentPlanet, currentState.bodies)
+                externalForce = superposition(currentPlanet, currentState.bodies),
+                colorId = currentPlanet.colorId,
             )
             SpaceBody(
                 mass = rawNewPlanet.mass,
@@ -31,7 +32,7 @@ data class SystemState(
                     prevState = prevPlanet,
                     currentState = currentPlanet,
                     newState = rawNewPlanet,
-                    deltaTime
+                    deltaTime,
                 ),
                 velocity = scheme.calcVelocity(
                     prevState = prevPlanet,
@@ -40,6 +41,7 @@ data class SystemState(
                     deltaTime
                 ),
                 externalForce = rawNewPlanet.externalForce,
+                colorId = currentPlanet.colorId,
             )
         }
         return SystemState(
