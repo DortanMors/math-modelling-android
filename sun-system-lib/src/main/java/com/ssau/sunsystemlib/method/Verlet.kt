@@ -23,5 +23,5 @@ object Verlet : Scheme {
         newState: SpaceBody,
         time: Long
     ): Vector3d =
-        (calcCoordinate(prevState, currentState, newState, time) - prevState.coordinate) / (2 * time)
+        (calcCoordinate(prevState, currentState, newState, time) - prevState.coordinate) / time + currentState.accelerate / time
 }
