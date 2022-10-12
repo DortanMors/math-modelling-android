@@ -1,21 +1,18 @@
 package com.ssau.sunsystemlib.core
 
 import com.ssau.sunsystemlib.core.interfaces.PlanetSystem
-import com.ssau.sunsystemlib.core.interfaces.Scheme
-import com.ssau.sunsystemlib.entity.Force
 import com.ssau.sunsystemlib.entity.SpaceBody
-import kotlinx.coroutines.flow.Flow
+import org.jetbrains.kotlinx.multik.ndarray.data.get
 
-class PlanetSystemImpl : PlanetSystem {
-    override val timeStep: Long
-        get() = TODO("Not yet implemented")
+class PlanetSystemImpl(
+    planets: List<SpaceBody>,
+) : PlanetSystem {
 
-    override val scheme: Scheme
-        get() = TODO("Not yet implemented")
+    override val bodies: List<SpaceBody> = planets
 
-    override val bodies: List<SpaceBody>
-        get() = TODO("Not yet implemented")
-
-    override val bodiesState: Flow<Map<SpaceBody, Force>>
-        get() = TODO("Not yet implemented")
+    override fun toString(): String {
+        return bodies.fold("\nPlanetSystem\n") { prev, current ->
+            prev + "(cords: ${current.coordinate.vector[0]}, ${current.coordinate.vector[1]}, ${current.coordinate.vector[2]})\tvelocity ${current.velocity.abs()}\n"
+        }
+    }
 }

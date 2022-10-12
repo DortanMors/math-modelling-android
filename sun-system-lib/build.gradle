@@ -12,4 +12,5 @@ dependencies {
     implementation "org.jetbrains.kotlinx:multik-core:0.2.0"
     implementation "org.jetbrains.kotlinx:multik-default:0.2.0"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
+    implementation 'junit:junit:4.12'
 }

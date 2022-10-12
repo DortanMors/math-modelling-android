@@ -1,10 +1,10 @@
 package com.ssau.sunsystemlib.core.interfaces
 
-import com.ssau.sunsystemlib.entity.Accelerate
-import com.ssau.sunsystemlib.entity.Coordinate
-import com.ssau.sunsystemlib.entity.Velocity
+import com.ssau.sunsystemlib.entity.SpaceBody
+import com.ssau.sunsystemlib.util.Vector3d
 
 interface Scheme {
-    fun getVelocity(velocity: Velocity, accelerate: Accelerate, time: Long): Velocity
-    fun coordinate(coordinate: Coordinate, velocity: Velocity, time: Long): Coordinate
+    fun calcCoordinate(prevState: SpaceBody, currentState: SpaceBody, newState: SpaceBody, time: Long): Vector3d
+
+    fun calcVelocity(prevState: SpaceBody, currentState: SpaceBody, newState: SpaceBody, time: Long): Vector3d
 }
