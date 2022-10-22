@@ -1,4 +1,4 @@
-package com.ssau.sunsystem.ui
+package com.ssau.sunsystem.ui.model
 
 import androidx.annotation.ColorInt
 import com.ssau.sunsystemlib.util.Vector3d

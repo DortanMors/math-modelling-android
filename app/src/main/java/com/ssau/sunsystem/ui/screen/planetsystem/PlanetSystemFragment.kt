@@ -1,4 +1,4 @@
-package com.ssau.sunsystem.ui.screen
+package com.ssau.sunsystem.ui.screen.planetsystem
 
 import android.os.Bundle
 import android.view.LayoutInflater

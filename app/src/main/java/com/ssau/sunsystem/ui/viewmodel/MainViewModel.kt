@@ -2,7 +2,7 @@ package com.ssau.sunsystem.ui.viewmodel
 
 import android.graphics.Color
 import androidx.lifecycle.ViewModel
-import com.ssau.sunsystem.ui.UiSpaceBody
+import com.ssau.sunsystem.ui.model.UiSpaceBody
 import com.ssau.sunsystem.util.mapToUi
 import com.ssau.sunsystemlib.core.Constants.DEFAULT_TIMESTEP
 import com.ssau.sunsystemlib.core.WorkspaceImpl

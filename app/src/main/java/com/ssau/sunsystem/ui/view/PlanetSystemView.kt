@@ -7,7 +7,7 @@ import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
-import com.ssau.sunsystem.ui.UiSpaceBody
+import com.ssau.sunsystem.ui.model.UiSpaceBody
 import com.ssau.sunsystemlib.core.Constants.DEFAULT_RADIUS
 import com.ssau.sunsystemlib.core.Constants.METERS_PER_PIXEL
 import com.ssau.sunsystemlib.util.Vector3d

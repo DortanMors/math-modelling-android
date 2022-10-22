@@ -2,7 +2,7 @@ package com.ssau.sunsystem
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.ssau.sunsystem.ui.screen.PlanetSystemFragment
+import com.ssau.sunsystem.ui.screen.planetsystem.PlanetSystemFragment
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 

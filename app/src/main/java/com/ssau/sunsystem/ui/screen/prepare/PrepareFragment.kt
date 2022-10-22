@@ -1,4 +1,4 @@
-package com.ssau.sunsystem.ui.screen
+package com.ssau.sunsystem.ui.screen.prepare
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,10 +9,10 @@ import androidx.fragment.app.viewModels
 import com.ssau.sunsystem.R
 import com.ssau.sunsystem.ui.viewmodel.MainViewModel
 
-class MainFragment : Fragment() {
+class PrepareFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() = PrepareFragment()
     }
 
     private val viewModel by viewModels<MainViewModel>()
@@ -21,7 +21,7 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.fragment_prepare, container, false)
     }
 
 
