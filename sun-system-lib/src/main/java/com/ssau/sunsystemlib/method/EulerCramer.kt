@@ -1,10 +1,9 @@
 package com.ssau.sunsystemlib.method
 
-import com.ssau.sunsystemlib.core.interfaces.Scheme
 import com.ssau.sunsystemlib.entity.SpaceBody
 import com.ssau.sunsystemlib.util.Vector3d
 
-object EulerCramer : Scheme {
+object EulerCramer : DifferenceScheme() {
     /**
      * @return X(n+1): newState`s coordinate */
     override fun calcCoordinate(
