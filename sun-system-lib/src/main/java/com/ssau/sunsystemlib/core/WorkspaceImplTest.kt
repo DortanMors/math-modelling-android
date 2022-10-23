@@ -1,21 +1,16 @@
 package com.ssau.sunsystemlib.core
 
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.ssau.sunsystemlib.entity.SpaceBody
 import com.ssau.sunsystemlib.method.EulerCramer
 import com.ssau.sunsystemlib.util.Vector3d
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
 
 
-@RunWith(AndroidJUnit4::class)
+@RunWith(JUnit4::class)
 class WorkspaceImplTest {
-
-    private val coroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
     @Test
     fun start() {
@@ -52,14 +47,11 @@ class WorkspaceImplTest {
         )
 
         // Start
-        coroutineScope.launch {
+        workspaceImpl.start()
+        runBlocking {
             workspaceImpl.bodiesState.collect { state ->
                 print(state.currentState)
             }
-        }
-        workspaceImpl.start()
-        while (true) {
-
         }
     }
 }
