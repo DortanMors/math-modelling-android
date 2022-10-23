@@ -7,4 +7,6 @@
     <string name="euler_cramer">Euler-Cramer</string>
     <string name="verlet">Verlet</string>
 
+    <string name="next">Next</string>
+
 </resources>
