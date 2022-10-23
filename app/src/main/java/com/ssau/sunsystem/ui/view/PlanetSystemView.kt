@@ -44,8 +44,8 @@ class PlanetSystemView @JvmOverloads constructor(
         super.onDraw(canvas)
 //        Log.d("HARDCODE", "\nSTATE")
         planets.forEach { planet ->
-            val cx = planet.coordinate[Vector3d.Component.X].mapToUiX()
-            val cy = planet.coordinate[Vector3d.Component.Y].mapToUiY()
+            val cx = planet.coordinate.x.mapToUiX()
+            val cy = planet.coordinate.y.mapToUiY()
             canvas?.drawCircle(
                 /*cx = */ cx,
                 /*cy = */ cy,
