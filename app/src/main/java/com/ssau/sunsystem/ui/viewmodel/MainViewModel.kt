@@ -2,6 +2,8 @@ package com.ssau.sunsystem.ui.viewmodel
 
 import android.graphics.Color
 import androidx.lifecycle.ViewModel
+import com.ssau.sunsystem.Defaults
+import com.ssau.sunsystem.ui.model.ApproximationMethod
 import com.ssau.sunsystem.ui.model.UiSpaceBody
 import com.ssau.sunsystem.util.mapToUi
 import com.ssau.sunsystemlib.core.Constants.DEFAULT_TIMESTEP
@@ -13,6 +15,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class MainViewModel : ViewModel() {
+    var method: ApproximationMethod = Defaults.scheme
 
     private val workspace = WorkspaceImpl( // todo from SettingsFragment
         planets = listOf(

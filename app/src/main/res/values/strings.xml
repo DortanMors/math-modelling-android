@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">math-modelling-android</string>
+    <string name="app_name">Planet System modelling</string>
+    <string name="approximation_title">Approximation method:</string>
+
+    <string name="beeman">Beeman</string>
+    <string name="euler">Euler</string>
+    <string name="euler_cramer">Euler-Cramer</string>
+    <string name="verlet">Verlet</string>
+
 </resources>

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.ssau.sunsystem.R
 import com.ssau.sunsystem.ui.view.PlanetSystemView
@@ -18,7 +18,7 @@ class PlanetSystemFragment : Fragment() {
         fun newInstance() = PlanetSystemFragment()
     }
 
-    private val viewModel by viewModels<MainViewModel>()
+    private val viewModel by activityViewModels<MainViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
