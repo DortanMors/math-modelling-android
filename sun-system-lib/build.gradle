@@ -10,5 +10,5 @@ java {
 
 dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
-    implementation 'junit:junit:4.12'
+    implementation 'junit:junit:4.13.2'
 }
