@@ -2,13 +2,18 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginVertical="8dp"
+    android:layout_marginHorizontal="4dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content"
+    android:background="@color/teal_700"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:padding="8dp"
         >
 
         <com.google.android.material.textview.MaterialTextView
@@ -26,11 +31,13 @@
             tools:text="Самый первый идёт у нас"
             />
 
-        <com.google.android.material.imageview.ShapeableImageView
+        <ImageView
             android:id="@+id/method_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            tools:src="@drawable/euler"
+            android:contentDescription="@strings/formula"
             />
 
     </LinearLayout>
