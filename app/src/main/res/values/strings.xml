@@ -7,6 +7,22 @@
     <string name="euler_cramer">Euler-Cramer</string>
     <string name="verlet">Verlet</string>
 
+    <string-array
+        name="methods">
+        <item>Beeman</item>
+        <item>Euler</item>
+        <item>Euler-Cramer</item>
+        <item>Verlet</item>
+    </string-array>
+
+    <string-array
+        name="methods_info">
+        <item>Эта схема лучше сохраняет энергию.</item> <!-- Beeman -->
+        <item>Точность метода Эйлера зачастую ограничена и зачастую порождаемое им решение неустойчиво.</item> <!-- Euler -->
+        <item>Этот метод порождает устойчивые решения для колебательных процессов.</item> <!-- Euler-Cramer -->
+        <item>Недостатком алгоритма является то, что он не самостартующий.</item> <!-- Verlet -->
+    </string-array>
+
     <string name="next">Next</string>
 
 </resources>

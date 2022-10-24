@@ -9,6 +9,8 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.ssau.sunsystem.R
 import com.ssau.sunsystem.ui.model.ApproximationMethod
 import com.ssau.sunsystem.ui.viewmodel.MainViewModel
@@ -30,30 +32,13 @@ class PrepareFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(view.findViewById<Spinner>(R.id.approximation_dropdown)) {
-            adapter = ArrayAdapter(
-                requireContext(),
-                // Разметка выбранного элемента
-                android.R.layout.simple_spinner_item,
-                ApproximationMethod.values().map { method -> getString(method.methodNameId) },
-            ).apply {
-                // Разметка для элемента выпадающего списка
-                setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            }
-            setSelection(viewModel.method.ordinal)
-            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    viewModel.method = ApproximationMethod.values()[position]
-                }
-
-                override fun onNothingSelected(p0: AdapterView<*>?) {}
-            }
+        view.findViewById<RecyclerView>(R.id.methods).apply {
+            layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+            adapter = ApproximationAdapter(context)
         }
-
     }
 }

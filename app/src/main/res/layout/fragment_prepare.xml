@@ -12,29 +12,9 @@
         tools:context=".ui.screen.prepare.PrepareFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/planets_configs"
+            android:id="@+id/methods"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:context=".ui.screen.prepare.PrepareFragment">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/approximation_title"
-                />
-
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/approximation_dropdown"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-
-        </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
