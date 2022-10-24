@@ -1,7 +1,7 @@
 package com.ssau.sunsystem
 
-import com.ssau.sunsystem.ui.model.ApproximationMethod
+import com.ssau.sunsystemlib.method.Euler
 
 object Defaults {
-    val scheme = ApproximationMethod.EULER
+    val scheme = Euler
 }

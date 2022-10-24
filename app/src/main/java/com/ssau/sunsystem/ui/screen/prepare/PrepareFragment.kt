@@ -5,14 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ssau.sunsystem.R
-import com.ssau.sunsystem.ui.model.ApproximationMethod
+import com.ssau.sunsystem.ui.screen.planetsystem.PlanetSystemFragment
 import com.ssau.sunsystem.ui.viewmodel.MainViewModel
 
 class PrepareFragment : Fragment() {
@@ -38,7 +35,12 @@ class PrepareFragment : Fragment() {
                 LinearLayoutManager.VERTICAL,
                 false
             )
-            adapter = ApproximationAdapter(context)
+            adapter = ApproximationAdapter(context) { method ->
+                viewModel.setScheme(method)
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.container, PlanetSystemFragment.newInstance())
+                    .commitNow()
+            }
         }
     }
 }
