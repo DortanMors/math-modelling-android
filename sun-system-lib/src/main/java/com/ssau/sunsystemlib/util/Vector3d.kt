@@ -30,5 +30,5 @@ data class Vector3d(var x: Double, var y: Double, var z: Double) {
     operator fun div(value: Number): Vector3d =
         Vector3d(x / value.toDouble(), y / value.toDouble(), z / value.toDouble())
 
-    fun abs(): Double = sqrt(x * x + y + y + z * z)
+    fun abs(): Double = sqrt(x * x + y * y + z * z)
 }
