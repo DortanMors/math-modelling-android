@@ -10,7 +10,6 @@ import android.view.View
 import com.ssau.sunsystem.ui.model.UiSpaceBody
 import com.ssau.sunsystemlib.core.Constants.DEFAULT_RADIUS
 import com.ssau.sunsystemlib.core.Constants.METERS_PER_PIXEL
-import com.ssau.sunsystemlib.util.Vector3d
 
 class PlanetSystemView @JvmOverloads constructor(
     context: Context,
@@ -20,15 +19,25 @@ class PlanetSystemView @JvmOverloads constructor(
 
     private var planets: List<UiSpaceBody> = emptyList()
 
+
     companion object {
         private const val STROKE_WIDTH = 5f
     }
 
-    private val path = Path()
+    private lateinit var paths: Array<Path> //todo fix shit
+
+    fun setInitialPlanetsCoordinates(planets: List<UiSpaceBody>) {
+        paths = Array(planets.size) { index ->
+            val coordinate = planets[index].coordinate
+            Path().apply {
+                moveTo(coordinate.x.mapToUiX(), coordinate.y.mapToUiY())
+            }
+        }
+    }
 
     private val pathPaint = Paint()
         .apply {
-            color = Color.WHITE
+            color = Color.RED
             isAntiAlias = true
             style = Paint.Style.STROKE
             strokeJoin = Paint.Join.ROUND
@@ -40,20 +49,21 @@ class PlanetSystemView @JvmOverloads constructor(
         isAntiAlias = true
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 //        Log.d("HARDCODE", "\nSTATE")
-        planets.forEach { planet ->
+        planets.forEachIndexed { index, planet ->
             val cx = planet.coordinate.x.mapToUiX()
             val cy = planet.coordinate.y.mapToUiY()
-            canvas?.drawCircle(
+            paths[index].lineTo(planet.coordinate.x.mapToUiX(), planet.coordinate.y.mapToUiY())
+            canvas.drawPath(paths[index], pathPaint.apply { color = planet.color })
+            canvas.drawCircle(
                 /*cx = */ cx,
                 /*cy = */ cy,
                 /*radius = */ DEFAULT_RADIUS,
                 /*paint = */ planetPaint.apply { color = planet.color },
             )
         }
-        canvas?.drawPath(path, pathPaint)
     }
 
     fun setSystemState(planets: List<UiSpaceBody>) {
