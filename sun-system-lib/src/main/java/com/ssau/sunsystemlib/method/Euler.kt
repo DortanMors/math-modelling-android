@@ -12,7 +12,7 @@ object Euler : DifferenceScheme() {
         newState: SpaceBody,
         time: Long
     ): Vector3d =
-        currentState.coordinate + currentState.velocity * time
+        currentState.coordinate + calcVelocity(prevState, currentState, newState, time) * time
 
     /**
      * @return V(n+1): newState`s velocity */
