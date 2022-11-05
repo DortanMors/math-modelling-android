@@ -6,6 +6,8 @@ import com.ssau.sunsystemlib.core.interfaces.Workspace
 import com.ssau.sunsystemlib.entity.SpaceBody
 import com.ssau.sunsystemlib.entity.SystemState
 import com.ssau.sunsystemlib.method.EulerCramer
+import com.ssau.sunsystemlib.util.orbitalize
+import com.ssau.sunsystemlib.util.orbitalizeScalar
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,7 +23,7 @@ class WorkspaceImpl(
      */
     private val _bodiesState: MutableStateFlow<SystemState> =
         MutableStateFlow(
-            SystemState(PlanetSystemImpl(planets))
+            SystemState(PlanetSystemImpl(planets.orbitalizeScalar()))
                 .recalculateState( // для первой итерации предыдущее состояние не учитывается
                     scheme = EulerCramer,
                     deltaTime = timeStep,

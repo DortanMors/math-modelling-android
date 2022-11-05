@@ -32,3 +32,5 @@ data class Vector3d(var x: Double, var y: Double, var z: Double) {
 
     fun abs(): Double = sqrt(x * x + y * y + z * z)
 }
+
+fun sqrt(vector: Vector3d) = Vector3d(sqrt(vector.x), sqrt(vector.y), sqrt(vector.z))
