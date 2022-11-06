@@ -12,7 +12,8 @@ android {
         minSdk 27
         targetSdk 32
         versionCode 1
-        versionName "1.0"
+        versionName "0.9"
+        setProperty("archivesBaseName", "SunsystemModel" + "-v" + versionCode + "(" + versionName + ")")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -20,10 +21,23 @@ android {
         }
     }
 
+    signingConfigs {
+        release {
+            storeFile getProperties()['storeFile']
+            storePassword getProperties()['storePassword']
+            keyAlias getProperties()['keyAlias']
+            keyPassword getProperties()['keyPassword']
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            versionNameSuffix "-debug"
         }
     }
     compileOptions {
