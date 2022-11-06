@@ -32,10 +32,10 @@ class PlanetSystemFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val planetSystemView = view.findViewById<PlanetSystemView>(R.id.planet_system_view)
         planetSystemView.post {
-            planetSystemView.setInitialPlanetsCoordinates(viewModel.planets.map { it.mapToUi() })
+            planetSystemView.setInitialPlanetsCoordinates(viewModel.planets.map { it.mapToUi(requireContext()) })
             lifecycleScope.launch {
                 viewModel.uiState.collect { planets ->
-                    planetSystemView.setSystemState(planets)
+                    planetSystemView.setSystemState(planets.map { it.mapToUi(requireContext()) })
                 }
             }
         }

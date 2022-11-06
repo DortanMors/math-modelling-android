@@ -1,10 +1,12 @@
 package com.ssau.sunsystem.ui.model
 
 import androidx.annotation.ColorInt
-import com.ssau.sunsystemlib.util.Vector3d
+import com.ssau.sunsystemlib.entity.SpaceBody
 
 data class UiSpaceBody(
-    val coordinate: Vector3d,
+    val x: Float,
+    val y: Float,
     @ColorInt
     val color: Int,
+    val physic: SpaceBody,
 )

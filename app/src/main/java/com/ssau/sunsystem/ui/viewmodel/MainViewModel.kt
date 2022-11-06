@@ -68,9 +68,9 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    val uiState: Flow<List<UiSpaceBody>> by lazy {
+    val uiState: Flow<List<SpaceBody>> by lazy {
         workspace.bodiesState.map { systemState ->
-            systemState.currentState.bodies.map { it.mapToUi() }
+            systemState.currentState.bodies
         }
     }
 
