@@ -23,10 +23,12 @@ android {
 
     signingConfigs {
         release {
-            storeFile getProperties()['storeFile']
-            storePassword getProperties()['storePassword']
-            keyAlias getProperties()['keyAlias']
-            keyPassword getProperties()['keyPassword']
+            Properties properties = new Properties()
+            properties.load(project.rootProject.file('local.properties').newDataInputStream())
+            storeFile file(properties.getProperty('storeFile'))
+            storePassword properties.getProperty('storePassword')
+            keyAlias properties.getProperty('keyAlias')
+            keyPassword properties.getProperty('keyPassword')
         }
     }
 
@@ -41,14 +43,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
-    buildFeatures {
-        dataBinding true
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
     packagingOptions {
         resources {
@@ -63,9 +62,9 @@ task wrapper(type: Wrapper){
 
 dependencies {
     def lifecycle_version = "2.5.1"
-    def nav_version = "2.5.2"
+    def nav_version = "2.5.3"
     testImplementation 'junit:junit:4.13.2'
-    implementation 'androidx.fragment:fragment-ktx:1.5.3'
+    implementation 'androidx.fragment:fragment-ktx:1.5.4'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
