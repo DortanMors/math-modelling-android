@@ -10,6 +10,9 @@ object Defaults {
     const val ARROW_HEAD_LENGTH: Float = 4f
     const val ARROW_LENGTH: Float = 15f
     const val PLANET_TEXT_SIZE: Float = 12f
+    const val DEFAULT_RADIUS: Float = 10f
+    const val METERS_PER_PIXEL: Float = 5E8f
+    const val DEFAULT_TIMESTEP: Long = 60 * 60 * 24
     val scheme = Euler
     val planets: List<SpaceBody> = listOf(
         SpaceBody( // Светило

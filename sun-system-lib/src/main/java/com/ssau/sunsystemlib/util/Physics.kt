@@ -6,7 +6,7 @@ import kotlin.math.pow
 import kotlin.math.sqrt
 
 fun getGravity(mass1: Double, mass2: Double, distance: Vector3d): Vector3d =
-    distance * (Constants.G * mass1 * mass2 / distance.abs().pow(3))
+    distance / distance.abs() * (Constants.G * mass1 * mass2 / distance.abs().pow(2))
 
 fun superposition(current: SpaceBody, allBodies: List<SpaceBody>): Vector3d {
     val newForce = Vector3d(0.0, 0.0, 0.0)

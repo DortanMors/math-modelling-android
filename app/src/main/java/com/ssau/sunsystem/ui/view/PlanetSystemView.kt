@@ -8,11 +8,11 @@ import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
 import com.ssau.sunsystem.Defaults
+import com.ssau.sunsystem.Defaults.DEFAULT_RADIUS
 import com.ssau.sunsystem.ui.model.UiSpaceBody
 import com.ssau.sunsystem.util.drawArrow
 import com.ssau.sunsystem.util.formatDouble
 import com.ssau.sunsystem.util.toDegrees
-import com.ssau.sunsystemlib.core.Constants.DEFAULT_RADIUS
 import kotlin.math.atan2
 
 class PlanetSystemView @JvmOverloads constructor(

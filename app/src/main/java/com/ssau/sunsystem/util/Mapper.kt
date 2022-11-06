@@ -1,9 +1,9 @@
 package com.ssau.sunsystem.util
 
 import android.content.Context
+import com.ssau.sunsystem.Defaults.METERS_PER_PIXEL
 import com.ssau.sunsystem.ui.model.ApproximationMethod
 import com.ssau.sunsystem.ui.model.UiSpaceBody
-import com.ssau.sunsystemlib.core.Constants.METERS_PER_PIXEL
 import com.ssau.sunsystemlib.entity.SpaceBody
 import com.ssau.sunsystemlib.method.Beeman
 import com.ssau.sunsystemlib.method.Euler
