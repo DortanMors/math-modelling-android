@@ -7,9 +7,13 @@ import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
+import com.ssau.sunsystem.Defaults
 import com.ssau.sunsystem.ui.model.UiSpaceBody
+import com.ssau.sunsystem.util.drawArrow
+import com.ssau.sunsystem.util.formatDouble
+import com.ssau.sunsystem.util.toDegrees
 import com.ssau.sunsystemlib.core.Constants.DEFAULT_RADIUS
-import com.ssau.sunsystemlib.core.Constants.METERS_PER_PIXEL
+import kotlin.math.atan2
 
 class PlanetSystemView @JvmOverloads constructor(
     context: Context,
@@ -17,51 +21,88 @@ class PlanetSystemView @JvmOverloads constructor(
     defStyle: Int = 0,
 ) : View(context, attrs, defStyle) {
 
-    private var planets: List<UiSpaceBody> = emptyList()
-
-
     companion object {
         private const val STROKE_WIDTH = 5f
+        private val pathPaint = Paint()
+            .apply {
+                color = Color.RED
+                isAntiAlias = true
+                style = Paint.Style.STROKE
+                strokeJoin = Paint.Join.ROUND
+                strokeWidth = STROKE_WIDTH
+            }
+
+        private val velocityPaint = Paint()
+            .apply {
+                color = Color.BLACK
+                style = Paint.Style.STROKE
+                strokeWidth = STROKE_WIDTH
+            }
+
+        private val forcePaint = Paint()
+            .apply {
+                color = Color.BLUE
+                style = Paint.Style.STROKE
+                strokeWidth = STROKE_WIDTH
+            }
+
+        private val planetPaint = Paint().apply {
+            color = Color.WHITE
+            isAntiAlias = true
+        }
+
     }
+
+    private val textPaint = Paint()
+        .apply {
+            color = Color.BLACK
+            textSize = Defaults.PLANET_TEXT_SIZE.sp()
+        }
+
+    private var planets: List<UiSpaceBody> = emptyList()
 
     private lateinit var paths: Array<Path> //todo fix shit
 
     fun setInitialPlanetsCoordinates(planets: List<UiSpaceBody>) {
         paths = Array(planets.size) { index ->
-            val coordinate = planets[index].coordinate
             Path().apply {
-                moveTo(coordinate.x.mapToUiX(), coordinate.y.mapToUiY())
+                with(planets[index]) {
+                    moveTo(x, y)
+                }
             }
         }
     }
 
-    private val pathPaint = Paint()
-        .apply {
-            color = Color.RED
-            isAntiAlias = true
-            style = Paint.Style.STROKE
-            strokeJoin = Paint.Join.ROUND
-            strokeWidth = STROKE_WIDTH
-        }
-
-    private val planetPaint = Paint().apply {
-        color = Color.WHITE
-        isAntiAlias = true
-    }
-
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-//        Log.d("HARDCODE", "\nSTATE")
         planets.forEachIndexed { index, planet ->
-            val cx = planet.coordinate.x.mapToUiX()
-            val cy = planet.coordinate.y.mapToUiY()
-            paths[index].lineTo(planet.coordinate.x.mapToUiX(), planet.coordinate.y.mapToUiY())
+            val planetX = planet.x
+            val planetY = planet.y
+            paths[index].lineTo(planet.x, planet.y)
             canvas.drawPath(paths[index], pathPaint.apply { color = planet.color })
+            canvas.drawVectorArrow(
+                x0 = planetX,
+                y0 = planetY,
+                x = planet.physic.velocity.x.toFloat(),
+                y = planet.physic.velocity.y.toFloat(),
+                paint = velocityPaint,
+            )
+            canvas.drawVectorArrow(
+                x0 = planetX,
+                y0 = planetY,
+                x = planet.physic.externalForce.x.toFloat(),
+                y = planet.physic.externalForce.y.toFloat(),
+                paint = forcePaint,
+            )
+            canvas.drawInfo(
+                body = planet,
+                paint = textPaint,
+            )
             canvas.drawCircle(
-                /*cx = */ cx,
-                /*cy = */ cy,
+                /*cx =     */ planetX,
+                /*cy =     */ planetY,
                 /*radius = */ DEFAULT_RADIUS,
-                /*paint = */ planetPaint.apply { color = planet.color },
+                /*paint =  */ planetPaint.apply { color = planet.color },
             )
         }
     }
@@ -71,14 +112,43 @@ class PlanetSystemView @JvmOverloads constructor(
         invalidate()
     }
 
-    private fun Double.mapToUiX(): Float = centerX + toFloat() / METERS_PER_PIXEL
+    private fun Float.dp(): Float = this * resources.displayMetrics.density
 
-    private fun Double.mapToUiY(): Float = centerY + toFloat() / METERS_PER_PIXEL
+    private fun Float.sp(): Float = this * resources.displayMetrics.scaledDensity
 
-    private val centerY
-        get() = measuredHeight / 2
+    private fun Canvas.drawVectorArrow(
+        x0: Float,
+        y0: Float,
+        x: Float,
+        y: Float,
+        paint: Paint,
+    ) {
+        val angle = atan2(y, x).toDegrees()
+        val arrowLength = Defaults.ARROW_LENGTH.dp()
+        drawArrow(x0, y0, angle, paint, arrowLength, Defaults.ARROW_WIDTH.dp())
+    }
 
-    private val centerX
-        get() = measuredWidth / 2
-
+    private fun Canvas.drawInfo(
+        body: UiSpaceBody,
+        paint: Paint,
+    ) {
+        drawText(
+            "v: ${body.physic.velocity.abs().formatDouble()}",
+            body.x + Defaults.ARROW_LENGTH.dp(),
+            body.y,
+            paint
+        )
+        drawText(
+            "a: ${body.physic.accelerate.abs().formatDouble()}",
+            body.x + Defaults.ARROW_LENGTH.dp(),
+            body.y + Defaults.PLANET_TEXT_SIZE.sp(),
+            paint
+        )
+        drawText(
+            "f: ${body.physic.externalForce.abs().formatDouble()}",
+            body.x + Defaults.ARROW_LENGTH.dp(),
+            body.y + 2 * Defaults.PLANET_TEXT_SIZE.sp(),
+            paint
+        )
+    }
 }
