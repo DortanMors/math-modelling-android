@@ -12,7 +12,7 @@ object Verlet : DifferenceScheme() {
         newState: SpaceBody,
         time: Long
     ): Vector3d =
-        currentState.coordinate * 2 - prevState.coordinate + currentState.accelerate * (time * time)
+        currentState.coordinate * 2 - prevState.coordinate + newState.accelerate * (time * time)
 
     /**
      * @return V(n+1): currentState`s coordinate */

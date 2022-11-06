@@ -22,5 +22,5 @@ object EulerCramer : DifferenceScheme() {
         newState: SpaceBody,
         time: Long
     ): Vector3d =
-        currentState.velocity + currentState.accelerate * time
+        currentState.velocity + newState.accelerate * time
 }

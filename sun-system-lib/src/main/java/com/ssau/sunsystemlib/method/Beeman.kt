@@ -12,7 +12,7 @@ object Beeman : DifferenceScheme() {
         newState: SpaceBody,
         time: Long
     ): Vector3d =
-        currentState.coordinate + currentState.velocity * time + (currentState.accelerate * 4 - prevState.accelerate) * (time * time / 6)
+        currentState.coordinate + currentState.velocity * time + (newState.accelerate * 4 - newState.accelerate) * (time * time / 6)
 
     /**
      * @return V(n+1): newState`s velocity */
@@ -22,5 +22,5 @@ object Beeman : DifferenceScheme() {
         newState: SpaceBody,
         time: Long
     ): Vector3d =
-        currentState.velocity + (newState.accelerate * 2 + currentState.accelerate * 5 - prevState.accelerate) * (time / 6)
+        currentState.velocity + (newState.accelerate * 2 + newState.accelerate * 5 - newState.accelerate) * (time / 6)
 }
