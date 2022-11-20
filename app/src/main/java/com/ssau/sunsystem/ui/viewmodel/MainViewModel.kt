@@ -50,13 +50,15 @@ class MainViewModel : ViewModel() {
         createWorkspace()
     }
 
-    fun createPlanet(lastPlanet: CustomizedPlanet?, name: String): CustomizedPlanet =
-        CustomizedPlanet(
+    fun createPlanet(lastPlanet: CustomizedPlanet?, name: String): CustomizedPlanet {
+        val generator = Random(System.currentTimeMillis())
+        return CustomizedPlanet(
             name = name,
-            color = Color.rgb(Random.nextInt(256), Random.nextInt(256), Random.nextInt(256)),
+            color = Color.rgb(generator.nextInt(256), generator.nextInt(256), generator.nextInt(256)),
             x = lastPlanet?.run { x * 1.1 } ?: 0.0,
             mass = lastPlanet?.run { mass * 1.5 } ?: Constants.SUN_MASS,
         )
+    }
 
     private var workspace: Workspace? = null
 
