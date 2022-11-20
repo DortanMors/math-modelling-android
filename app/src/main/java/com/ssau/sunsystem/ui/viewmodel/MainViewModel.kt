@@ -79,9 +79,24 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    val uiState: Flow<List<SpaceBody>>
-    get() = workspace?.bodiesState?.map { systemState ->
-        systemState.currentState.bodies
-    } ?: flow { emptyList<SpaceBody>() }
+    fun fastBackward() {
+        delay *= 2
+    }
 
+    fun fastForward() {
+        delay /= 2
+    }
+
+    val daysPerSecond: Double
+        get() = 1000.0 / delay * timeStep / Constants.SECONDS_IN_DAY
+
+    val uiState: Flow<List<SpaceBody>>
+        get() = workspace?.bodiesState?.map { systemState ->
+            systemState.currentState.bodies
+        } ?: flow { emptyList<SpaceBody>() }
+
+    val yearsPassed: Flow<Double>
+        get() = workspace?.secondsPassed?.map { seconds ->
+            seconds.toDouble() / Constants.SECONDS_IN_YEAR
+        } ?: flow { 0.0 }
 }

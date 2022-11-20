@@ -14,6 +14,9 @@ class WorkspaceImpl(
     planets: List<SpaceBody>,
 ) : Workspace {
 
+    private val _secondsPassed: MutableStateFlow<Long> = MutableStateFlow(0)
+    override val secondsPassed: Flow<Long> = _secondsPassed
+
     override var timeStep: Long = 0
 
     override var scheme: Scheme = EulerCramer
@@ -36,17 +39,20 @@ class WorkspaceImpl(
 
     private val coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
+    private var job: Job? = null
+
     override fun start() {
-        coroutineScope.launch {
+        job = coroutineScope.launch {
             bodiesState.collect { currentState ->
                 delay(delay)
                 val newState = currentState.recalculateState(scheme, timeStep)
                 _bodiesState.emit(newState)
+                _secondsPassed.emit(_secondsPassed.value + timeStep)
             }
         }
     }
 
     override fun pause() {
-        TODO("Not yet implemented")
+        job?.cancel()
     }
  }

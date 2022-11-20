@@ -43,4 +43,7 @@
     <string name="ok">OK</string>
     <string name="remove">Remove</string>
     <string name="add">Add</string>
+
+    <string name="days_per_second">%.2f days per second</string>
+    <string name="years_passed">Year: %.2f</string>
 </resources>
