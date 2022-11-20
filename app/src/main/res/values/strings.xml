@@ -25,4 +25,18 @@
 
     <string name="next">Next</string>
     <string name="formula">Method formula</string>
+
+    <string name="planet_name">Planet Name</string>
+    <string name="planet_mass">Mass</string>
+    <string name="planet_x">X</string>
+    <string name="planet_y">Y</string>
+    <string name="planet_z">Z</string>
+    <string name="planet_color">Planet color</string>
+    <string name="planet_distance">Planet distance</string>
+    <string name="planet_velocity">Planet velocity</string>
+
+
+    <string name="ok">OK</string>
+    <string name="remove">Remove</string>
+    <string name="add">Add</string>
 </resources>

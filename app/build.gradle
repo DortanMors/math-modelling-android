@@ -74,6 +74,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "com.github.skydoves:colorpickerpreference:2.0.6"
 
     implementation project(':sun-system-lib')
 }
