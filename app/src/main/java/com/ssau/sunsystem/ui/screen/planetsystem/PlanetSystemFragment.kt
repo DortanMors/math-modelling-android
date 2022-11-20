@@ -9,6 +9,7 @@ import com.ssau.sunsystem.R
 import com.ssau.sunsystem.ui.view.PlanetSystemView
 import com.ssau.sunsystem.ui.viewmodel.MainViewModel
 import com.ssau.sunsystem.util.mapToUi
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class PlanetSystemFragment : Fragment(R.layout.fragment_planet_system) {
@@ -22,8 +23,16 @@ class PlanetSystemFragment : Fragment(R.layout.fragment_planet_system) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val planetSystemView = view.findViewById<PlanetSystemView>(R.id.planet_system_view)
+        lifecycleScope.launch {
+            viewModel.uiState.first().let { planets ->
+                planetSystemView.post {
+                    planetSystemView.setInitialPlanetsCoordinates(
+                        planets.map { it.mapToUi(requireContext()) }
+                    )
+                }
+            }
+        }
         planetSystemView.post {
-            planetSystemView.setInitialPlanetsCoordinates(viewModel.planets.map { it.mapToUi(requireContext()) })
             lifecycleScope.launch {
                 viewModel.uiState.collect { planets ->
                     planetSystemView.setSystemState(planets.map { it.mapToUi(requireContext()) })
