@@ -7,12 +7,14 @@ import com.ssau.sunsystem.Defaults.DEFAULT_TIMESTEP
 import com.ssau.sunsystem.ui.model.ApproximationMethod
 import com.ssau.sunsystem.ui.screen.planets.CustomizedPlanet
 import com.ssau.sunsystem.util.mapToScheme
+import com.ssau.sunsystem.util.nameId
 import com.ssau.sunsystem.util.toSpaceBody
 import com.ssau.sunsystemlib.core.Constants
 import com.ssau.sunsystemlib.core.WorkspaceImpl
 import com.ssau.sunsystemlib.core.interfaces.Scheme
 import com.ssau.sunsystemlib.core.interfaces.Workspace
 import com.ssau.sunsystemlib.entity.SpaceBody
+import com.ssau.sunsystemlib.method.DifferenceScheme
 import kotlin.random.Random
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -20,6 +22,9 @@ import kotlinx.coroutines.flow.map
 
 class MainViewModel : ViewModel() {
     private var scheme: Scheme = Defaults.scheme
+
+    val schemeNameId: Int
+        get() = (scheme as DifferenceScheme).nameId
 
     var customizedPlanets = Defaults.planetsUi
 

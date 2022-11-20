@@ -22,6 +22,11 @@ class SchemeSetupFragment : Fragment(R.layout.fragment_scheme_setup) {
     private val delayEditText: TextInputEditText?
         get() = view?.findViewById(R.id.delay)
 
+    override fun onStart() {
+        super.onStart()
+        activity?.setTitle(R.string.sampling_setup)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         timeStepEditText?.setText(viewModel.timeStep.toString())

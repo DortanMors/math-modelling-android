@@ -17,12 +17,16 @@ class PlanetsSetupFragment : Fragment(R.layout.fragment_planets) {
 
     private val viewModel by activityViewModels<MainViewModel>()
 
+    override fun onStart() {
+        super.onStart()
+        activity?.setTitle(R.string.planets_setup)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val adapter = PlanetsAdapter(viewModel.customizedPlanets) { planets ->
             viewModel.customizedPlanets = planets
         }
-
         adapter.setOnColorPickClick { position ->
             lifecycleScope.launch {
                 context?.let { context ->

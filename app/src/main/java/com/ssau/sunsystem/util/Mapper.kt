@@ -7,6 +7,7 @@ import com.ssau.sunsystem.ui.model.UiSpaceBody
 import com.ssau.sunsystem.ui.screen.planets.CustomizedPlanet
 import com.ssau.sunsystemlib.entity.SpaceBody
 import com.ssau.sunsystemlib.method.Beeman
+import com.ssau.sunsystemlib.method.DifferenceScheme
 import com.ssau.sunsystemlib.method.Euler
 import com.ssau.sunsystemlib.method.EulerCramer
 import com.ssau.sunsystemlib.method.Verlet
@@ -33,6 +34,14 @@ fun ApproximationMethod.mapToScheme() =
         ApproximationMethod.EULER_CRAMER -> EulerCramer
         ApproximationMethod.BEEMAN -> Beeman
         ApproximationMethod.VERLET -> Verlet
+    }
+
+val DifferenceScheme.nameId: Int
+    get() = when (this) {
+        Euler -> com.ssau.sunsystem.R.string.euler
+        EulerCramer -> com.ssau.sunsystem.R.string.euler_cramer
+        Beeman -> com.ssau.sunsystem.R.string.beeman
+        Verlet -> com.ssau.sunsystem.R.string.verlet
     }
 
 val Context.centerX: Float

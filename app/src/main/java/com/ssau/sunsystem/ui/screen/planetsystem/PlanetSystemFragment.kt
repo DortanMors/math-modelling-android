@@ -23,6 +23,11 @@ class PlanetSystemFragment : Fragment(R.layout.fragment_planet_system) {
 
     private lateinit var yearsView: TextView
 
+    override fun onStart() {
+        super.onStart()
+        activity?.setTitle(viewModel.schemeNameId)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val planetSystemView = view.findViewById<PlanetSystemView>(R.id.planet_system_view)

@@ -19,6 +19,11 @@ class PrepareFragment : Fragment(R.layout.fragment_prepare) {
 
     private val viewModel by activityViewModels<MainViewModel>()
 
+    override fun onStart() {
+        super.onStart()
+        activity?.setTitle(R.string.approximation_method)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<RecyclerView>(R.id.methods).apply {
