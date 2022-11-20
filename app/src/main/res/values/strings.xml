@@ -36,6 +36,7 @@
     <string name="planet_velocity">Planet velocity</string>
 
     <string name="scheme_time_step">Time step in seconds</string>
+    <string name="scheme_delay">Scheme delay in milliseconds</string>
 
     <string name="must_be_number">Please input number</string>
 

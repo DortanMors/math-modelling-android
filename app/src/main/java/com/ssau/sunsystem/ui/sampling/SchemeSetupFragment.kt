@@ -19,18 +19,35 @@ class SchemeSetupFragment : Fragment(R.layout.fragment_scheme_setup) {
     private val timeStepEditText: TextInputEditText?
         get() = view?.findViewById(R.id.time_step)
 
+    private val delayEditText: TextInputEditText?
+        get() = view?.findViewById(R.id.delay)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         timeStepEditText?.setText(viewModel.timeStep.toString())
+        delayEditText?.setText(viewModel.delay.toString())
         view.findViewById<Button>(R.id.next).setOnClickListener {
+            var isError = false
+
             try {
                 viewModel.timeStep = timeStepEditText?.text.toString().toLong()
+            } catch (e: NumberFormatException) {
+                timeStepEditText?.error = getString(R.string.must_be_number)
+                isError = true
+            }
+
+            try {
+                viewModel.delay = delayEditText?.text.toString().toLong()
+            } catch (e: NumberFormatException) {
+                delayEditText?.error = getString(R.string.must_be_number)
+                isError = true
+            }
+
+            if (!isError) {
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.container, PlanetSystemFragment.newInstance())
                     .addToBackStack(PlanetSystemFragment.tag)
                     .commit()
-            } catch (e: NumberFormatException) {
-                timeStepEditText?.error = getString(R.string.must_be_number)
             }
         }
     }

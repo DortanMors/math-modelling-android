@@ -4,7 +4,6 @@ import android.graphics.Color
 import androidx.lifecycle.ViewModel
 import com.ssau.sunsystem.Defaults
 import com.ssau.sunsystem.Defaults.DEFAULT_TIMESTEP
-import com.ssau.sunsystem.R
 import com.ssau.sunsystem.ui.model.ApproximationMethod
 import com.ssau.sunsystem.ui.screen.planets.CustomizedPlanet
 import com.ssau.sunsystem.util.mapToScheme
@@ -30,6 +29,13 @@ class MainViewModel : ViewModel() {
         set(value) {
             field = value.also {
                 workspace?.timeStep = it
+            }
+        }
+
+    var delay: Long = Defaults.DEFAULT_DELAY
+        set(value) {
+            field = value.also {
+                workspace?.delay = it
             }
         }
 

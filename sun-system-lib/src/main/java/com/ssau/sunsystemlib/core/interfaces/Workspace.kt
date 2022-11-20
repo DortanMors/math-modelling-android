@@ -4,6 +4,7 @@ import com.ssau.sunsystemlib.entity.SystemState
 import kotlinx.coroutines.flow.Flow
 
 interface Workspace {
+    var delay: Long
     var timeStep: Long
     val bodiesState: Flow<SystemState>
     var scheme: Scheme
