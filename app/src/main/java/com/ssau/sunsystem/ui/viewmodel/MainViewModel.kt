@@ -52,7 +52,7 @@ class MainViewModel : ViewModel() {
 
     fun setupPlanets() {
         planets = customizedPlanets.map { it.toSpaceBody() }
-        createWorkspace()
+        workspace = null
     }
 
     fun createPlanet(lastPlanet: CustomizedPlanet?, name: String): CustomizedPlanet {
@@ -75,12 +75,13 @@ class MainViewModel : ViewModel() {
         workspace?.pause()
     }
 
-    private fun createWorkspace() {
+    fun createWorkspace() {
         workspace = WorkspaceImpl(
             planets = planets,
         ).apply {
-            scheme = this@MainViewModel.scheme
-            timeStep = this@MainViewModel.timeStep
+            this@apply.scheme = this@MainViewModel.scheme
+            this@apply.timeStep = this@MainViewModel.timeStep
+            this@apply.delay = this@MainViewModel.delay
         }
     }
 
@@ -91,6 +92,8 @@ class MainViewModel : ViewModel() {
     fun fastForward() {
         delay /= 2
     }
+
+    fun hasWorkspace(): Boolean = workspace != null
 
     val daysPerSecond: Double
         get() = 1000.0 / delay * timeStep / Constants.SECONDS_IN_DAY

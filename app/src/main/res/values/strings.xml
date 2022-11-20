@@ -50,4 +50,7 @@
 
     <string name="days_per_second">%.2f days per second</string>
     <string name="years_passed">Year: %.2f</string>
+
+    <string name="resume_model">Resume model</string>
+    <string name="new_model">New model</string>
 </resources>

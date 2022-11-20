@@ -41,14 +41,35 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/next"
+    <LinearLayout
+        android:id="@+id/buttons"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        >
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/new_model"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/new_model"
+            />
+
+        <Space
+            android:id="@+id/space"
+            android:layout_width="8dp"
+            android:layout_height="wrap_content"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/resume_model"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/resume_model"
+            />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
