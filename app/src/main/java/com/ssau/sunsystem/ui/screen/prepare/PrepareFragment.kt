@@ -7,7 +7,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ssau.sunsystem.R
-import com.ssau.sunsystem.ui.screen.planetsystem.PlanetSystemFragment
+import com.ssau.sunsystem.ui.sampling.SchemeSetupFragment
 import com.ssau.sunsystem.ui.viewmodel.MainViewModel
 import com.ssau.sunsystem.util.tag
 
@@ -30,8 +30,8 @@ class PrepareFragment : Fragment(R.layout.fragment_prepare) {
             adapter = ApproximationAdapter(context) { method ->
                 viewModel.setScheme(method)
                 parentFragmentManager.beginTransaction()
-                    .replace(R.id.container, PlanetSystemFragment.newInstance())
-                    .addToBackStack(PlanetSystemFragment.tag)
+                    .replace(R.id.container, SchemeSetupFragment.newInstance())
+                    .addToBackStack(SchemeSetupFragment.tag)
                     .commit()
             }
         }

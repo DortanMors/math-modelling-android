@@ -14,9 +14,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 class WorkspaceImpl(
     planets: List<SpaceBody>,
-    override var scheme: Scheme,
-    override val timeStep: Long,
 ) : Workspace {
+
+    override var timeStep: Long = 1
+
+    override var scheme: Scheme = EulerCramer
 
     /**
      * Внутренний поток состояний системы, разница между двумя последовытельными состояниями = timeStep

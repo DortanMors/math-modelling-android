@@ -46,9 +46,10 @@ class WorkspaceImplTest {
         )
         val workspaceImpl = WorkspaceImpl(
             planets = planets,
-            scheme = EulerCramer,
-            timeStep = 3600,
-        )
+        ).apply {
+            scheme = EulerCramer
+            timeStep = 3600
+        }
 
         // Start
         workspaceImpl.start()

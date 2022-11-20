@@ -16,6 +16,7 @@ import com.ssau.sunsystemlib.core.interfaces.Workspace
 import com.ssau.sunsystemlib.entity.SpaceBody
 import kotlin.random.Random
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
 class MainViewModel : ViewModel() {
@@ -25,15 +26,22 @@ class MainViewModel : ViewModel() {
 
     var planets: List<SpaceBody> = emptyList()
 
-    val planetsCount: Int
-        get() = planets.size //todo hardcode
+    var timeStep: Long = DEFAULT_TIMESTEP
+        set(value) {
+            field = value.also {
+                workspace?.timeStep = it
+            }
+        }
 
     fun setScheme(method: ApproximationMethod) {
-        this.scheme = method.mapToScheme()
+        this.scheme = method.mapToScheme().also {
+            workspace?.scheme = it
+        }
     }
 
     fun setupPlanets() {
         planets = customizedPlanets.map { it.toSpaceBody() }
+        createWorkspace()
     }
 
     fun createPlanet(lastPlanet: CustomizedPlanet?, name: String): CustomizedPlanet =
@@ -44,20 +52,28 @@ class MainViewModel : ViewModel() {
             mass = lastPlanet?.run { mass * 1.5 } ?: Constants.SUN_MASS,
         )
 
-    private val workspace: Workspace by lazy {
-        WorkspaceImpl( // todo from SettingsFragment
+    private var workspace: Workspace? = null
+
+    fun start() {
+        workspace?.start()
+    }
+
+    fun pause() {
+        workspace?.pause()
+    }
+
+    private fun createWorkspace() {
+        workspace = WorkspaceImpl(
             planets = planets,
-            scheme = scheme,
-            timeStep = DEFAULT_TIMESTEP,
         ).apply {
-            start()
+            scheme = this@MainViewModel.scheme
+            timeStep = this@MainViewModel.timeStep
         }
     }
 
-    val uiState: Flow<List<SpaceBody>> by lazy {
-        workspace.bodiesState.map { systemState ->
-            systemState.currentState.bodies
-        }
-    }
+    val uiState: Flow<List<SpaceBody>>
+    get() = workspace?.bodiesState?.map { systemState ->
+        systemState.currentState.bodies
+    } ?: flow { emptyList<SpaceBody>() }
 
 }

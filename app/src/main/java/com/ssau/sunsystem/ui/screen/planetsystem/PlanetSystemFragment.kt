@@ -23,6 +23,7 @@ class PlanetSystemFragment : Fragment(R.layout.fragment_planet_system) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val planetSystemView = view.findViewById<PlanetSystemView>(R.id.planet_system_view)
+        viewModel.start()
         lifecycleScope.launch {
             viewModel.uiState.first().let { planets ->
                 planetSystemView.post {
