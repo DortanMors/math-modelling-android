@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">Planet System modelling</string>
+    <string name="approximation_title">Метод аппроксимации:</string>
+
+    <string name="planets_setup">Настройка планет</string>
+    <string name="approximation_method">Метод аппроксимации</string>
+    <string name="sampling_setup">Настройка дискретизации</string>
+
+    <string name="beeman">Метод Бимана</string>
+    <string name="euler">Метод Эйлера</string>
+    <string name="euler_cramer">Метод Эйлера-Крамера</string>
+    <string name="verlet">Метод Верле</string>
+
+    <string-array
+        name="methods">
+        <item>Метод Бимана</item>
+        <item>Метод Эйлера</item>
+        <item>Метод Эйлера-Крамера</item>
+        <item>Метод Верле</item>
+    </string-array>
+
+    <string-array
+        name="methods_info">
+        <item>Эта схема лучше сохраняет энергию.</item> <!-- Beeman -->
+        <item>Точность метода Эйлера зачастую ограничена и зачастую порождаемое им решение неустойчиво.</item> <!-- Euler -->
+        <item>Этот метод порождает устойчивые решения для колебательных процессов.</item> <!-- Euler-Cramer -->
+        <item>Недостатком алгоритма является то, что он не самостартующий.</item> <!-- Verlet -->
+    </string-array>
+
+    <string name="next">Далее</string>
+    <string name="formula">Формула метода</string>
+
+    <string name="planet_name">Название планеты</string>
+    <string name="planet_mass">Масса</string>
+    <string name="planet_x">X</string>
+    <string name="planet_y">Y</string>
+    <string name="planet_z">Z</string>
+    <string name="planet_color">Цвет планеты</string>
+    <string name="planet_distance">Расстояние</string>
+    <string name="planet_velocity">Скорость</string>
+
+    <string name="scheme_time_step">Шаг по времени в секундах</string>
+    <string name="scheme_delay">Задержка вычислений в миллисекундах</string>
+
+    <string name="must_be_number">Введите число</string>
+
+    <string name="ok">OK</string>
+    <string name="remove">Удалить</string>
+    <string name="add">Добавить</string>
+
+    <string name="days_per_second">Дней в секунду: %.2f</string>
+    <string name="years_passed">Год: %.2f</string>
+
+    <string name="resume_model">Продолжить</string>
+    <string name="new_model">Новая модель</string>
+
+    <string name="show_names">Показать названия</string>
+    <string name="show_physics">Показать физику</string>
+    <string name="show_paths">Показать пути</string>
+    <string name="show_zoom">Показать масштаб</string>
+</resources>
