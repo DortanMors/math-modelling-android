@@ -11,8 +11,8 @@ android {
         applicationId "com.ssau.sunsystem"
         minSdk 27
         targetSdk 32
-        versionCode 1
-        versionName "0.9"
+        versionCode 2
+        versionName "0.99"
         setProperty("archivesBaseName", "SunsystemModel" + "-v" + versionCode + "(" + versionName + ")")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -39,6 +39,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
+            applicationIdSuffix ".debug"
             versionNameSuffix "-debug"
         }
     }
