@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.switchmaterial.SwitchMaterial
+import com.ssau.sunsystem.Defaults
+import com.ssau.sunsystem.Defaults.METERS_PER_PIXEL
 import com.ssau.sunsystem.R
 import com.ssau.sunsystem.ui.dialog.shortToast
 import com.ssau.sunsystem.ui.view.PlanetSystemView
@@ -75,6 +77,16 @@ class PlanetSystemFragment : Fragment(R.layout.fragment_planet_system) {
         view.findViewById<View>(R.id.fast_forward).setOnClickListener {
             viewModel.fastForward()
             showDaysPerSecond()
+        }
+        view.findViewById<View>(R.id.zoom_in).setOnClickListener {
+            val oldZoom = METERS_PER_PIXEL
+            METERS_PER_PIXEL -= Defaults.SCALE_STEP
+            planetSystemView.scalePaths(oldZoom / METERS_PER_PIXEL)
+        }
+        view.findViewById<View>(R.id.zoom_out).setOnClickListener {
+            val oldZoom = METERS_PER_PIXEL
+            METERS_PER_PIXEL += Defaults.SCALE_STEP
+            planetSystemView.scalePaths(oldZoom / METERS_PER_PIXEL)
         }
         startPauseToggle.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {

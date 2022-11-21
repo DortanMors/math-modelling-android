@@ -11,7 +11,8 @@ object Defaults {
     const val ARROW_LENGTH: Float = 15f
     const val PLANET_TEXT_SIZE: Float = 12f
     const val DEFAULT_RADIUS: Float = 10f // todo желательно вычислять на основе массы
-    const val METERS_PER_PIXEL: Float = 5E8f // todo вычислять масштаб
+    const val SCALE_STEP: Float = 5E7f
+    var METERS_PER_PIXEL: Float = 10 * SCALE_STEP
     const val DEFAULT_TIMESTEP: Long = 60 * 60 * 24
     const val DEFAULT_DELAY: Long = 100
 

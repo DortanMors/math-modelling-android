@@ -24,8 +24,8 @@ fun CustomizedPlanet.toSpaceBody() = SpaceBody(
 
 fun SpaceBody.mapToUi(context: Context) = UiSpaceBody(
     name = name,
-    x = this.coordinate.x.mapToUiX(context),
-    y = this.coordinate.y.mapToUiY(context),
+    x = this.coordinate.x.mapToUiX(context, METERS_PER_PIXEL),
+    y = this.coordinate.y.mapToUiY(context, METERS_PER_PIXEL),
     color = this.colorId,
     physic = this,
 )
@@ -52,6 +52,6 @@ val Context.centerX: Float
 val Context.centerY: Float
     get() = resources.displayMetrics.heightPixels / 2f
 
-fun Number.mapToUiX(context: Context) = context.centerX + this.toFloat() / METERS_PER_PIXEL
+fun Number.mapToUiX(context: Context, metersPerPixel: Float) = context.centerX + this.toFloat() / metersPerPixel
 
-fun Number.mapToUiY(context: Context) = context.centerY + this.toFloat() / METERS_PER_PIXEL
+fun Number.mapToUiY(context: Context, metersPerPixel: Float) = context.centerY + this.toFloat() / metersPerPixel

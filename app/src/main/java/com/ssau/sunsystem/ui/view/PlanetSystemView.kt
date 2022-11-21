@@ -3,15 +3,19 @@ package com.ssau.sunsystem.ui.view
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.Matrix
 import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
 import com.ssau.sunsystem.Defaults
 import com.ssau.sunsystem.Defaults.DEFAULT_RADIUS
+import com.ssau.sunsystem.Defaults.METERS_PER_PIXEL
 import com.ssau.sunsystem.ui.model.UiSpaceBody
 import com.ssau.sunsystem.util.drawArrow
 import com.ssau.sunsystem.util.formatDouble
+import com.ssau.sunsystem.util.mapToUiX
+import com.ssau.sunsystem.util.mapToUiY
 import com.ssau.sunsystem.util.toDegrees
 import kotlin.math.atan2
 
@@ -92,9 +96,9 @@ class PlanetSystemView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         planets.forEachIndexed { index, planet ->
-            val planetX = planet.x
-            val planetY = planet.y
-            paths[index].lineTo(planet.x, planet.y)
+            val planetX = planet.physic.coordinate.x.mapToUiX(context, METERS_PER_PIXEL)
+            val planetY = planet.physic.coordinate.y.mapToUiY(context, METERS_PER_PIXEL)
+            paths[index].lineTo(planetX, planetY)
             if (showPaths) {
                 canvas.drawPath(paths[index], pathPaint.apply { color = planet.color })
             }
@@ -129,6 +133,13 @@ class PlanetSystemView @JvmOverloads constructor(
 
     fun setSystemState(planets: List<UiSpaceBody>) {
         this.planets = planets
+        invalidate()
+    }
+
+    fun scalePaths(scale: Float) {
+        val matrix = Matrix()
+        matrix.setScale(scale, scale, width / 2f, height / 2f)
+        paths.forEach { path -> path.transform(matrix) }
         invalidate()
     }
 
