@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.ToggleButton
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.ssau.sunsystem.R
 import com.ssau.sunsystem.ui.dialog.shortToast
 import com.ssau.sunsystem.ui.view.PlanetSystemView
@@ -23,6 +25,10 @@ class PlanetSystemFragment : Fragment(R.layout.fragment_planet_system) {
 
     private lateinit var yearsView: TextView
 
+    private lateinit var settingsLayout: View
+
+    private lateinit var zoomSettings: View
+
     override fun onStart() {
         super.onStart()
         activity?.setTitle(viewModel.schemeNameId)
@@ -33,6 +39,35 @@ class PlanetSystemFragment : Fragment(R.layout.fragment_planet_system) {
         val planetSystemView = view.findViewById<PlanetSystemView>(R.id.planet_system_view)
         yearsView = view.findViewById(R.id.years_view)
         startPauseToggle = view.findViewById(R.id.start_pause)
+        settingsLayout = view.findViewById(R.id.settings_layout)
+        view.findViewById<View>(R.id.settings).setOnClickListener {
+            settingsLayout.isVisible = !settingsLayout.isVisible
+        }
+        view.findViewById<SwitchMaterial>(R.id.switch_show_names).run {
+            isChecked = planetSystemView.showNames
+            setOnCheckedChangeListener { _, isChecked ->
+                planetSystemView.showNames = isChecked
+            }
+        }
+        view.findViewById<SwitchMaterial>(R.id.switch_show_physics).run {
+            isChecked = planetSystemView.showPhysics
+            setOnCheckedChangeListener { _, isChecked ->
+                planetSystemView.showPhysics = isChecked
+            }
+        }
+        view.findViewById<SwitchMaterial>(R.id.switch_show_paths).run {
+            isChecked = planetSystemView.showPaths
+            setOnCheckedChangeListener { _, isChecked ->
+                planetSystemView.showPaths = isChecked
+            }
+        }
+        zoomSettings = view.findViewById(R.id.scale_layout)
+        view.findViewById<SwitchMaterial>(R.id.switch_show_zoom).run {
+            isChecked = true
+            setOnCheckedChangeListener { _, isChecked ->
+                zoomSettings.isVisible = isChecked
+            }
+        }
         view.findViewById<View>(R.id.fast_backward).setOnClickListener {
             viewModel.fastBackward()
             showDaysPerSecond()

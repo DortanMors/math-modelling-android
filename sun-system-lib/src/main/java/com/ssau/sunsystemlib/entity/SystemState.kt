@@ -20,6 +20,7 @@ data class SystemState(
         val newPlanets = prevState.bodies.zip(currentState.bodies).map { pair ->
             val (prevPlanet, currentPlanet) = pair
             val rawNewPlanet = SpaceBody(
+                name = currentPlanet.name,
                 mass = currentPlanet.mass,
                 coordinate = currentPlanet.coordinate,
                 velocity = currentPlanet.velocity,
@@ -27,6 +28,7 @@ data class SystemState(
                 colorId = currentPlanet.colorId,
             )
             SpaceBody(
+                name = rawNewPlanet.name,
                 mass = rawNewPlanet.mass,
                 coordinate = scheme.calcCoordinate(
                     prevState = prevPlanet,

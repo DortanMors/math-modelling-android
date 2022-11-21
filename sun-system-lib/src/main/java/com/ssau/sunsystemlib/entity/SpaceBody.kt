@@ -3,6 +3,7 @@ package com.ssau.sunsystemlib.entity
 import com.ssau.sunsystemlib.util.Vector3d
 
 data class SpaceBody(
+    val name: String,
     val mass: Double,
     val coordinate: Vector3d,
     val velocity: Vector3d,

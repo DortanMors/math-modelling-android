@@ -53,6 +53,22 @@ class PlanetSystemView @JvmOverloads constructor(
 
     }
 
+    var showPaths: Boolean = true
+        set(value) {
+            field = value
+            invalidate()
+        }
+    var showPhysics: Boolean = false
+        set(value) {
+            field = value
+            invalidate()
+        }
+    var showNames: Boolean = true
+        set(value) {
+            field = value
+            invalidate()
+        }
+
     private val textPaint = Paint()
         .apply {
             color = Color.BLACK
@@ -79,21 +95,25 @@ class PlanetSystemView @JvmOverloads constructor(
             val planetX = planet.x
             val planetY = planet.y
             paths[index].lineTo(planet.x, planet.y)
-            canvas.drawPath(paths[index], pathPaint.apply { color = planet.color })
-            canvas.drawVectorArrow(
-                x0 = planetX,
-                y0 = planetY,
-                x = planet.physic.velocity.x.toFloat(),
-                y = planet.physic.velocity.y.toFloat(),
-                paint = velocityPaint,
-            )
-            canvas.drawVectorArrow(
-                x0 = planetX,
-                y0 = planetY,
-                x = planet.physic.externalForce.x.toFloat(),
-                y = planet.physic.externalForce.y.toFloat(),
-                paint = forcePaint,
-            )
+            if (showPaths) {
+                canvas.drawPath(paths[index], pathPaint.apply { color = planet.color })
+            }
+            if (showPhysics) {
+                canvas.drawVectorArrow(
+                    x0 = planetX,
+                    y0 = planetY,
+                    x = planet.physic.velocity.x.toFloat(),
+                    y = planet.physic.velocity.y.toFloat(),
+                    paint = velocityPaint,
+                )
+                canvas.drawVectorArrow(
+                    x0 = planetX,
+                    y0 = planetY,
+                    x = planet.physic.externalForce.x.toFloat(),
+                    y = planet.physic.externalForce.y.toFloat(),
+                    paint = forcePaint,
+                )
+            }
             canvas.drawInfo(
                 body = planet,
                 paint = textPaint,
@@ -132,23 +152,33 @@ class PlanetSystemView @JvmOverloads constructor(
         body: UiSpaceBody,
         paint: Paint,
     ) {
-        drawText(
-            "v: ${body.physic.velocity.abs().formatDouble()}",
-            body.x + Defaults.ARROW_LENGTH.dp(),
-            body.y,
-            paint
-        )
-        drawText(
-            "a: ${body.physic.accelerate.abs().formatDouble()}",
-            body.x + Defaults.ARROW_LENGTH.dp(),
-            body.y + Defaults.PLANET_TEXT_SIZE.sp(),
-            paint
-        )
-        drawText(
-            "f: ${body.physic.externalForce.abs().formatDouble()}",
-            body.x + Defaults.ARROW_LENGTH.dp(),
-            body.y + 2 * Defaults.PLANET_TEXT_SIZE.sp(),
-            paint
-        )
+        if (showNames) {
+            drawText(
+                body.name,
+                body.x + Defaults.ARROW_LENGTH.dp(),
+                body.y - Defaults.PLANET_TEXT_SIZE.sp(),
+                paint,
+            )
+        }
+        if (showPhysics) {
+            drawText(
+                "v: ${body.physic.velocity.abs().formatDouble()}",
+                body.x + Defaults.ARROW_LENGTH.dp(),
+                body.y,
+                paint
+            )
+            drawText(
+                "a: ${body.physic.accelerate.abs().formatDouble()}",
+                body.x + Defaults.ARROW_LENGTH.dp(),
+                body.y + Defaults.PLANET_TEXT_SIZE.sp(),
+                paint
+            )
+            drawText(
+                "f: ${body.physic.externalForce.abs().formatDouble()}",
+                body.x + Defaults.ARROW_LENGTH.dp(),
+                body.y + 2 * Defaults.PLANET_TEXT_SIZE.sp(),
+                paint
+            )
+        }
     }
 }

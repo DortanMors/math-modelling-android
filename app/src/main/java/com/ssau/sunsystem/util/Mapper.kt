@@ -14,6 +14,7 @@ import com.ssau.sunsystemlib.method.Verlet
 import com.ssau.sunsystemlib.util.Vector3d
 
 fun CustomizedPlanet.toSpaceBody() = SpaceBody(
+    name = name,
     mass = mass,
     coordinate = Vector3d(x, y, z),
     velocity = Vector3d(velocityX, velocityY, velocityZ),
@@ -22,6 +23,7 @@ fun CustomizedPlanet.toSpaceBody() = SpaceBody(
 )
 
 fun SpaceBody.mapToUi(context: Context) = UiSpaceBody(
+    name = name,
     x = this.coordinate.x.mapToUiX(context),
     y = this.coordinate.y.mapToUiY(context),
     color = this.colorId,

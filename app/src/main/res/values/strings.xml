@@ -53,4 +53,9 @@
 
     <string name="resume_model">Resume model</string>
     <string name="new_model">New model</string>
+
+    <string name="show_names">Show names</string>
+    <string name="show_physics">Show physics</string>
+    <string name="show_paths">Show paths</string>
+    <string name="show_zoom">Show zoom</string>
 </resources>
