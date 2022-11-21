@@ -46,7 +46,7 @@
 
     <string name="ok">OK</string>
     <string name="remove">Удалить</string>
-    <string name="add">Добавить</string>
+    <string name="add">Новая</string>
 
     <string name="days_per_second">Дней в секунду: %.2f</string>
     <string name="years_passed">Год: %.2f</string>
