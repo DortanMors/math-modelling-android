@@ -77,7 +77,7 @@ class PlanetSystemView @JvmOverloads constructor(
 
     private var planets: List<UiSpaceBody> = emptyList()
 
-    private lateinit var paths: Array<Path> //todo fix shit
+    private lateinit var paths: Array<Path>
 
     fun setInitialPlanetsCoordinates(planets: List<UiSpaceBody>) {
         paths = Array(planets.size) { index ->
