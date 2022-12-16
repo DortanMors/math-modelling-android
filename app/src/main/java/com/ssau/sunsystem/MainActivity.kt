@@ -11,7 +11,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         onBackPressedDispatcher.addCallback(this) {
-            supportFragmentManager.popBackStack()
+            if (supportFragmentManager.backStackEntryCount > 1) {
+                supportFragmentManager.popBackStack()
+            }
         }
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
