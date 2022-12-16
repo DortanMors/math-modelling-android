@@ -116,5 +116,7 @@ class MainViewModel : ViewModel() {
     val yearsPassed: Flow<Double>
         get() = workspace?.secondsPassed?.map { seconds ->
             seconds.toDouble() / Constants.SECONDS_IN_YEAR
-        } ?: flow { 0.0 }
+        } ?: flow {
+            emit(0.0)
+        }
 }
