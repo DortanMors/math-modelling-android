@@ -58,4 +58,6 @@
     <string name="show_physics">Показать физику</string>
     <string name="show_paths">Показать пути</string>
     <string name="show_zoom">Показать масштаб</string>
+
+    <string name="calc_auto">Авто</string>
 </resources>

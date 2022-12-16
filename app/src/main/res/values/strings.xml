@@ -58,4 +58,6 @@
     <string name="show_physics">Show physics</string>
     <string name="show_paths">Show paths</string>
     <string name="show_zoom">Show zoom</string>
+
+    <string name="calc_auto">Auto</string>
 </resources>

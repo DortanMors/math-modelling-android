@@ -11,6 +11,7 @@ import com.ssau.sunsystem.ui.dialog.showColorPickerDialogAndAwaitResult
 import com.ssau.sunsystem.ui.screen.prepare.PrepareFragment
 import com.ssau.sunsystem.ui.viewmodel.MainViewModel
 import com.ssau.sunsystem.util.tag
+import com.ssau.sunsystemlib.util.Vector3d
 import kotlinx.coroutines.launch
 
 class PlanetsSetupFragment : Fragment(R.layout.fragment_planets) {
@@ -34,6 +35,9 @@ class PlanetsSetupFragment : Fragment(R.layout.fragment_planets) {
                     adapter.setPlanetColor(position, selectedColor)
                 }
             }
+        }
+        adapter.setOnAutoVelocityCallback { position, motherPlanet, planet ->
+            adapter.setPlanetVelocity(position, Vector3d(0.0, viewModel.calculateVelocity(motherPlanet, planet), 0.0))
         }
 
         val planetsRecycler = view.findViewById<RecyclerView>(R.id.rv_planets)

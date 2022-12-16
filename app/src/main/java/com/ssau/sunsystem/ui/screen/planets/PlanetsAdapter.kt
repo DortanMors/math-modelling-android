@@ -9,6 +9,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
 import com.ssau.sunsystem.R
+import com.ssau.sunsystemlib.util.Vector3d
 
 class PlanetsAdapter(
     planets: List<CustomizedPlanet>,
@@ -17,6 +18,7 @@ class PlanetsAdapter(
 
     private val planets: MutableList<CustomizedPlanet> = mutableListOf()
     private var onColorPickClick: ((position: Int) -> Unit)? = null
+    private var onAutoVelocityCallback: ((position: Int, motherPlanet: CustomizedPlanet, planet: CustomizedPlanet) -> Unit)? = null
 
     init {
         this.planets.addAll(planets)
@@ -24,6 +26,10 @@ class PlanetsAdapter(
 
     fun setOnColorPickClick(onColorPickClick: (position: Int) -> Unit) {
         this.onColorPickClick = onColorPickClick
+    }
+
+    fun setOnAutoVelocityCallback(onAutoVelocityCallback: (position: Int, motherPlanet: CustomizedPlanet, planet: CustomizedPlanet) -> Unit) {
+        this.onAutoVelocityCallback = onAutoVelocityCallback
     }
 
     fun addPlanet(planet: CustomizedPlanet) {
@@ -44,6 +50,14 @@ class PlanetsAdapter(
 
     fun setPlanetColor(position: Int, color: Int) {
         planets[position].color = color
+        onSaveState.invoke(planets)
+        notifyItemChanged(position)
+    }
+
+    fun setPlanetVelocity(position: Int, velocity: Vector3d) {
+        planets[position].velocityX = velocity.x
+        planets[position].velocityY = velocity.y
+        planets[position].velocityZ = velocity.z
         onSaveState.invoke(planets)
         notifyItemChanged(position)
     }
@@ -164,6 +178,9 @@ class PlanetsAdapter(
                     onColorPickClick?.invoke(position)
                 }
                 it.setColorFilter(planets[position].color)
+            }
+            itemView.findViewById<View>(R.id.calc_auto_velocity).setOnClickListener {
+                onAutoVelocityCallback?.invoke(position, planets.first(), planets[position])
             }
         }
 

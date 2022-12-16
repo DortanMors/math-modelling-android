@@ -28,7 +28,7 @@ class WorkspaceImpl(
      */
     private val _bodiesState: MutableStateFlow<SystemState> =
         MutableStateFlow(
-            SystemState(PlanetSystemImpl(planets.orbitalizeScalar()))
+            SystemState(PlanetSystemImpl(planets))
                 .recalculateState( // для первой итерации предыдущее состояние не учитывается
                     scheme = EulerCramer,
                     deltaTime = timeStep,

@@ -2,7 +2,9 @@ package com.ssau.sunsystemlib.util
 
 import com.ssau.sunsystemlib.core.Constants
 import com.ssau.sunsystemlib.entity.SpaceBody
+import kotlin.math.abs
 import kotlin.math.pow
+import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
 fun getGravity(mass1: Double, mass2: Double, distance: Vector3d): Vector3d =
@@ -32,9 +34,21 @@ fun List<SpaceBody>.orbitalize() =
     }
 
 fun calcOrbitalVelocity(motherPlanet: SpaceBody, planet: SpaceBody): Vector3d =
-    (motherPlanet.coordinate - planet.coordinate).let { r ->
-        sqrt(r / r.abs() * Constants.G * (motherPlanet.mass + planet.mass) / r.abs())
+    calcOrbitalVelocity(motherPlanet.coordinate, motherPlanet.mass, planet.coordinate, planet.mass)
+
+fun calcOrbitalVelocity(motherCoordinate: Vector3d, motherMass: Double, planetCoordinate: Vector3d, planetMass: Double): Vector3d =
+    (motherCoordinate - planetCoordinate).let { r ->
+        sqrt(Vector3d(abs(r.x), abs(r.y), abs(r.z)) / r.abs() * Constants.G * (motherMass + planetMass) / r.abs())
     }
+
+fun calcOrbitalVelocityScalar(motherCoordinate: Vector3d, motherMass: Double, planetCoordinate: Vector3d, planetMass: Double): Double {
+    val distance = (motherCoordinate - planetCoordinate).abs()
+    return if (distance < 1) {
+        0.0
+    } else {
+        (sqrt(Constants.G * (motherMass + planetMass) / distance) * 100).roundToInt() / 100.0
+    }
+}
 
 fun calcOrbitalVelocityScalar(motherPlanet: SpaceBody, planet: SpaceBody): Double {
     val r = motherPlanet.coordinate - planet.coordinate

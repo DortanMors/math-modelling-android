@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.ssau.sunsystem.ui.screen.planets.PlanetsSetupFragment
-import com.ssau.sunsystem.ui.screen.prepare.PrepareFragment
 import com.ssau.sunsystem.util.tag
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {

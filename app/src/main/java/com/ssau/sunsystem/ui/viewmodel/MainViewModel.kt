@@ -15,6 +15,8 @@ import com.ssau.sunsystemlib.core.interfaces.Scheme
 import com.ssau.sunsystemlib.core.interfaces.Workspace
 import com.ssau.sunsystemlib.entity.SpaceBody
 import com.ssau.sunsystemlib.method.DifferenceScheme
+import com.ssau.sunsystemlib.util.Vector3d
+import com.ssau.sunsystemlib.util.calcOrbitalVelocityScalar
 import kotlin.random.Random
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -94,6 +96,14 @@ class MainViewModel : ViewModel() {
     }
 
     fun hasWorkspace(): Boolean = workspace != null
+
+    fun calculateVelocity(motherPlanet: CustomizedPlanet, planet: CustomizedPlanet): Double =
+        calcOrbitalVelocityScalar(
+            motherCoordinate = Vector3d(motherPlanet.x, motherPlanet.y, motherPlanet.z),
+            motherMass = motherPlanet.mass,
+            planetCoordinate = Vector3d(planet.x, planet.y, planet.z),
+            planetMass = planet.mass,
+        )
 
     val daysPerSecond: Double
         get() = 1000.0 / delay * timeStep / Constants.SECONDS_IN_DAY
