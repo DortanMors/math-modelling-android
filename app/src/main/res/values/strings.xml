@@ -21,10 +21,10 @@
 
     <string-array
         name="methods_info">
-        <item>Эта схема лучше сохраняет энергию.</item> <!-- Beeman -->
-        <item>Точность метода Эйлера зачастую ограничена и зачастую порождаемое им решение неустойчиво.</item> <!-- Euler -->
-        <item>Этот метод порождает устойчивые решения для колебательных процессов.</item> <!-- Euler-Cramer -->
-        <item>Недостатком алгоритма является то, что он не самостартующий.</item> <!-- Verlet -->
+        <item>This scheme stores energy better.</item> <!-- Beeman -->
+        <item>The best to use.</item> <!-- Euler -->
+        <item>This method generates stable solutions for oscillatory processes.</item> <!-- Euler-Cramer -->
+        <item>The disadvantage of the algorithm is that it is not self-starting.</item> <!-- Verlet -->
     </string-array>
 
     <string name="next">Next</string>
