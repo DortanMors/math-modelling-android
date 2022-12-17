@@ -67,4 +67,9 @@
     <string name="earth">Earth</string>
 
     <string name="menu_all_coordinates">XYZ velocity</string>
+
+    <string name="time_to_update">It`s time to update!</string>
+    <string name="update_message">Your app update is ready. Install?</string>
+    <string name="install">Install</string>
+    <string name="later">Later</string>
 </resources>

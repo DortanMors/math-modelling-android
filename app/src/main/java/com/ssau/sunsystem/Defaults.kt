@@ -17,6 +17,7 @@ object Defaults {
     var METERS_PER_PIXEL: Float = 10 * SCALE_STEP
     const val DEFAULT_TIMESTEP: Long = 60 * 60 * 24
     const val DEFAULT_DELAY: Long = 100
+    const val UPDATE_REQUEST_CODE = 1337
 
     val scheme = Euler // стартовая схема
     fun getPlanetsUi(context: Context): List<CustomizedPlanet> = listOf(
