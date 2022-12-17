@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Planet System modelling</string>
+    <string name="app_name">Tiny Planet System</string>
     <string name="approximation_title">Approximation method:</string>
 
     <string name="planets_setup">Planets setup</string>

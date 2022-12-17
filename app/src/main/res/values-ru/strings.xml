@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Planet System modelling</string>
+    <string name="app_name">Система планеток</string>
     <string name="approximation_title">Метод аппроксимации:</string>
 
     <string name="planets_setup">Настройка планет</string>
