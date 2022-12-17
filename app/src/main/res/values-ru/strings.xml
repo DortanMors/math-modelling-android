@@ -66,5 +66,5 @@
     <string name="venus">Венера</string>
     <string name="earth">Земля</string>
 
-    <string name="menu_all_coordinates">Все координаты</string>
+    <string name="menu_all_coordinates">XYZ скорость</string>
 </resources>
