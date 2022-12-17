@@ -1,6 +1,7 @@
 
 package com.ssau.sunsystem
 
+import android.content.Context
 import android.graphics.Color
 import com.ssau.sunsystem.ui.screen.planets.CustomizedPlanet
 import com.ssau.sunsystemlib.method.Euler
@@ -17,32 +18,32 @@ object Defaults {
     const val DEFAULT_DELAY: Long = 100
 
     val scheme = Euler // стартовая схема
-    val planetsUi: List<CustomizedPlanet> = listOf(
+    fun getPlanetsUi(context: Context): List<CustomizedPlanet> = listOf(
         CustomizedPlanet( // Светило
             mass = 1.989E30,
             color = Color.YELLOW,
-            name = "Солнце",
+            name = context.getString(R.string.sun),
         ),
         CustomizedPlanet( // Mercury Development
             mass = 3.285E23,
             x = 58E9,
             velocityY = 48E3,
             color = Color.RED,
-            name = "Меркурий",
+            name = context.getString(R.string.mercury),
         ),
         CustomizedPlanet( // Venus Anus
             mass = 4.867E24,
             x = 108E9,
             velocityY = 35E3,
             color = Color.MAGENTA,
-            name = "Венера",
+            name = context.getString(R.string.venus),
         ),
         CustomizedPlanet( // Terra Internum
             mass = 5.974E24,
             x = 150E9,
             velocityY = 30E3,
             color = Color.BLUE,
-            name = "Земля",
+            name = context.getString(R.string.earth),
         )
     )
 }

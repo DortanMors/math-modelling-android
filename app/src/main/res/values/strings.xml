@@ -60,4 +60,9 @@
     <string name="show_zoom">Show zoom</string>
 
     <string name="calc_auto">Auto</string>
+
+    <string name="sun">Sun</string>
+    <string name="mercury">Mercury</string>
+    <string name="venus">Venus</string>
+    <string name="earth">Earth</string>
 </resources>

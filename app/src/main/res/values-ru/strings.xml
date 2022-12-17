@@ -60,4 +60,9 @@
     <string name="show_zoom">Показать масштаб</string>
 
     <string name="calc_auto">Авто</string>
+
+    <string name="sun">Солнце</string>
+    <string name="mercury">Меркурий</string>
+    <string name="venus">Венера</string>
+    <string name="earth">Земля</string>
 </resources>

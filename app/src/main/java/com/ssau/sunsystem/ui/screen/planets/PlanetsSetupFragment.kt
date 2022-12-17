@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
+import com.ssau.sunsystem.Defaults
 import com.ssau.sunsystem.R
 import com.ssau.sunsystem.ui.dialog.showColorPickerDialogAndAwaitResult
 import com.ssau.sunsystem.ui.screen.prepare.PrepareFragment
@@ -25,7 +26,10 @@ class PlanetsSetupFragment : Fragment(R.layout.fragment_planets) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = PlanetsAdapter(viewModel.customizedPlanets) { planets ->
+        val adapter = PlanetsAdapter(
+            planets = viewModel.customizedPlanets.takeIf { it.isNotEmpty() }
+                ?: Defaults.getPlanetsUi(requireContext())
+        ) { planets ->
             viewModel.customizedPlanets = planets
         }
         adapter.setOnColorPickClick { position ->

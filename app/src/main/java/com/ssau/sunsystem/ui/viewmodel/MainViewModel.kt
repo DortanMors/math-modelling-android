@@ -28,7 +28,7 @@ class MainViewModel : ViewModel() {
     val schemeNameId: Int
         get() = (scheme as DifferenceScheme).nameId
 
-    var customizedPlanets = Defaults.planetsUi
+    var customizedPlanets: List<CustomizedPlanet> = emptyList()
 
     var planets: List<SpaceBody> = emptyList()
 
