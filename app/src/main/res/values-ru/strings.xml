@@ -65,4 +65,6 @@
     <string name="mercury">Меркурий</string>
     <string name="venus">Венера</string>
     <string name="earth">Земля</string>
+
+    <string name="menu_all_coordinates">Все координаты</string>
 </resources>

@@ -1,7 +1,11 @@
 package com.ssau.sunsystem.ui.screen.planets
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
+import android.widget.CheckBox
+import android.widget.CheckedTextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -19,6 +23,8 @@ class PlanetsSetupFragment : Fragment(R.layout.fragment_planets) {
 
     private val viewModel by activityViewModels<MainViewModel>()
 
+    private lateinit var adapter: PlanetsAdapter
+
     override fun onStart() {
         super.onStart()
         activity?.setTitle(R.string.planets_setup)
@@ -26,7 +32,7 @@ class PlanetsSetupFragment : Fragment(R.layout.fragment_planets) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = PlanetsAdapter(
+        adapter = PlanetsAdapter(
             planets = viewModel.customizedPlanets.takeIf { it.isNotEmpty() }
                 ?: Defaults.getPlanetsUi(requireContext())
         ) { planets ->
@@ -62,6 +68,18 @@ class PlanetsSetupFragment : Fragment(R.layout.fragment_planets) {
 
         view.findViewById<View>(R.id.remove).setOnClickListener {
             adapter.deletePlanet(adapter.getPlanets().size - 1)
+        }
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_planets, menu)
+        (menu.findItem(R.id.toggle_xyz_coordinates).actionView as CheckBox).run {
+            isChecked = Defaults.isXyzCoordinates
+            setOnClickListener { checkView, ->
+                adapter.setXyzVisible((checkView as CheckBox).isChecked)
+            }
+            super.onCreateOptionsMenu(menu, inflater)
         }
     }
 

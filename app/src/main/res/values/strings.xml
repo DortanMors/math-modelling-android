@@ -65,4 +65,6 @@
     <string name="mercury">Mercury</string>
     <string name="venus">Venus</string>
     <string name="earth">Earth</string>
+
+    <string name="menu_all_coordinates">XYZ coordinates</string>
 </resources>

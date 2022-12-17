@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.magenta.mc.client.android.ui.fragment.details.ui.order.group.GroupOrderDetailsFragment">
+
+    <item
+        android:id="@+id/toggle_xyz_coordinates"
+        app:actionLayout="@layout/view_xyz_coordinates"
+        android:checkable="true"
+        app:showAsAction="always"
+        android:title="@string/menu_all_coordinates"
+        />
+
+</menu>

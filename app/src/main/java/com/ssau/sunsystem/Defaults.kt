@@ -7,6 +7,7 @@ import com.ssau.sunsystem.ui.screen.planets.CustomizedPlanet
 import com.ssau.sunsystemlib.method.Euler
 
 object Defaults {
+    const val isXyzCoordinates: Boolean = false
     const val ARROW_WIDTH: Float = 2f
     const val ARROW_HEAD_LENGTH: Float = 4f
     const val ARROW_LENGTH: Float = 15f

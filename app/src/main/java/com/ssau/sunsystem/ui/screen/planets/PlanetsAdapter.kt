@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
+import com.ssau.sunsystem.Defaults
 import com.ssau.sunsystem.R
 import com.ssau.sunsystemlib.util.Vector3d
 
@@ -19,6 +21,7 @@ class PlanetsAdapter(
     private val planets: MutableList<CustomizedPlanet> = mutableListOf()
     private var onColorPickClick: ((position: Int) -> Unit)? = null
     private var onAutoVelocityCallback: ((position: Int, motherPlanet: CustomizedPlanet, planet: CustomizedPlanet) -> Unit)? = null
+    private var isXyzCoordinates = Defaults.isXyzCoordinates
 
     init {
         this.planets.addAll(planets)
@@ -73,6 +76,11 @@ class PlanetsAdapter(
     }
 
     override fun getItemCount(): Int = planets.size
+
+    fun setXyzVisible(checked: Boolean) {
+        isXyzCoordinates = checked
+        notifyItemRangeChanged(0, planets.size)
+    }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -182,6 +190,8 @@ class PlanetsAdapter(
             itemView.findViewById<View>(R.id.calc_auto_velocity).setOnClickListener {
                 onAutoVelocityCallback?.invoke(position, planets.first(), planets[position])
             }
+            itemView.findViewById<View>(R.id.til_x_velocity_layout).isVisible = isXyzCoordinates
+            itemView.findViewById<View>(R.id.til_z_velocity_layout).isVisible = isXyzCoordinates
         }
 
         inner class EditTextListener(
